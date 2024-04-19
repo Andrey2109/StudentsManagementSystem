@@ -1,13 +1,13 @@
 package com.handson.basic.model;
 
 import com.handson.basic.util.Dates;
+import com.sun.istack.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -42,8 +42,6 @@ public class Student implements Serializable {
 
     @Length(max = 500)
     private String profilePicture;
-
-
 
     public Long getId() {
         return id;
@@ -111,13 +109,13 @@ public class Student implements Serializable {
 
     public static final class StudentBuilder {
         private Long id;
-        private @NotNull Date createdAt;
-        private @NotEmpty @Length(max = 60) String fullname;
+        private Date createdAt = Dates.nowUTC();
+        private String fullname;
         private Date birthDate;
-        private @Min(100) @Max(800) Integer satScore;
-        private @Min(30) @Max(110) Double graduationScore;
-        private @Length(max = 20) String phone;
-        private @Length(max = 500) String profilePicture;
+        private Integer satScore;
+        private Double graduationScore;
+        private String phone;
+        private String profilePicture;
 
         private StudentBuilder() {
         }
